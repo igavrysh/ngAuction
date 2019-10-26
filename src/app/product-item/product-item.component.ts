@@ -9,5 +9,5 @@ import { Product } from '../shared/product.service';
 export class ProductItemComponent {
 
   @Input() product: Product;
-  
+      
 }

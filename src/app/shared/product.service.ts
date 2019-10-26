@@ -15,6 +15,18 @@ export class Product {
 
 }
 
+export class ProductService {
+
+  getProducts(): Product[] {
+    return products.map(p => new Product(p.id, p.title, p.price, p.rating, p.description, p.categories));
+  }
+
+  getProductById(productId: number): Product {
+    return this.getProducts().filter(p => p.id === productId).shift();
+  }
+
+}
+
 const products = [
   {
     'id': 0,
@@ -31,19 +43,37 @@ const products = [
     'rating': 3.5,
     'description': 'This is short description.',
     'categories': ['books']
+  },
+  {
+    'id': 2,
+    'title': 'Third Product',
+    'price': 64.99,
+    'rating': 3.5,
+    'description': 'This is short description.',
+    'categories': ['books']
+  },
+  {
+    'id': 3,
+    'title': 'Fourth Product',
+    'price': 64.99,
+    'rating': 3.5,
+    'description': 'This is short description.',
+    'categories': ['books']
+  },
+  {
+    'id': 4,
+    'title': 'Fivth Product',
+    'price': 64.99,
+    'rating': 3.5,
+    'description': 'This is short description.',
+    'categories': ['books']
+  },
+  {
+    'id': 5,
+    'title': 'Sixth Product',
+    'price': 64.99,
+    'rating': 3.5,
+    'description': 'This is short description.',
+    'categories': ['books']
   }
 ];
-
-
-export class ProductService {
-
-  getProducts(): Product[] {
-    return products.map(p => new Product(p.id, p.title, p.price, p.rating, p.description, p.categories));
-  }
-
-  getProductById(productId: number): Product {
-    return this.getProducts().filter(p => p.id === productId).shift();
-  }
-
-}
-

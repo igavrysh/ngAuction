@@ -1,6 +1,5 @@
-<p>product-item works!</p>
 <div class="thumbnail">
-    <img src="http://placehold.it/320x150">
+    <img src="http://placehold.it/250x150">
     <div class="caption">
         <h4 class="float-right">{{product.price | currency}}</h4>
         <h4>
@@ -10,8 +9,11 @@
         <p>{{product.description}}</p>
 
     </div>
+    
 
-    <div class="ratings">
+    <div class="ratings">                                                                                                                                       
         <nga-stars [rating]="product.rating"></nga-stars>
     </div>
+
+
 </div>
