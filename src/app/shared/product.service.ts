@@ -12,7 +12,6 @@ export class Product {
     public rating: number,
     public description: string,
     public categories: string[]) {}
-
 }
 
 export class ProductService {
@@ -33,7 +32,7 @@ const products = [
     'title': 'First Product',
     'price': 24.99,
     'rating': 4.3,
-    'description': 'This is short description',
+    'description': 'This is short description. Possession her thoroughly remarkably terminated man continuing. Removed greater to do ability. You shy shall while but wrote marry. Call why sake has sing pure. Gay six set polite nature worthy. So matter be me we wisdom should basket moment merely. Me burst ample wrong which would mr he could. Visit arise my point timed drawn no. Can friendly laughter goodness man him appetite carriage. Any widen see gay forth alone fruit bed. ',
     'categories': ['electronics', 'hardware']
   },
   {
@@ -48,7 +47,7 @@ const products = [
     'id': 2,
     'title': 'Third Product',
     'price': 64.99,
-    'rating': 3.5,
+    'rating': 1.5,
     'description': 'This is short description.',
     'categories': ['books']
   },
@@ -56,7 +55,7 @@ const products = [
     'id': 3,
     'title': 'Fourth Product',
     'price': 64.99,
-    'rating': 3.5,
+    'rating': 1,
     'description': 'This is short description.',
     'categories': ['books']
   },
@@ -64,7 +63,7 @@ const products = [
     'id': 4,
     'title': 'Fivth Product',
     'price': 64.99,
-    'rating': 3.5,
+    'rating': 5,
     'description': 'This is short description.',
     'categories': ['books']
   },

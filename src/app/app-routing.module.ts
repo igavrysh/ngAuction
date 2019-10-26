@@ -9,6 +9,9 @@ const routes: Routes = [
   },
   {
     path: 'product', component: ProductDetailComponent
+  },
+  {
+    path: 'products/:productId', component: ProductDetailComponent
   }
 
 ];
