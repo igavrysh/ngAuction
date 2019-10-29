@@ -13,6 +13,8 @@ import { SearchComponent } from './search/search.component';
 import { StarsComponent } from './stars/stars.component';
 import { ProductService } from './shared/product.service';
 import { RouterModule } from '@angular/router';
+import { AuctionMaterialModule } from "./auction-material/auction-material.module";
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -28,7 +30,9 @@ import { RouterModule } from '@angular/router';
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    AuctionMaterialModule,
+    FormsModule
   ],
   providers: [ProductService],
   bootstrap: [AppComponent]
