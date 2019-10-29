@@ -1,0 +1,5 @@
+mat-form-field, mat-select, [mat-raised-button] {
+    display: block;
+    margin-top: 10px;
+    width: 100%;
+}
