@@ -1,19 +1,23 @@
-<nga-navbar></nga-navbar>
+<mat-toolbar class="toolbar">
+  <button class="toolbar__icon_button" mat-icon-button>
+    <mat-icon>menu</mat-icon>
+  </button>
 
-<div class="container">
+  <div class="toolbar__logo-title-group" fxLayout fxLayoutAlign="center center">
+    <a routerLink="/" fxLayout>
+      <img class="toolbar__logo" src="/assets/logo.svg" alt="NgAuction Logo">
+    </a>
 
-  <div class="row">
-    
-    <div class = "col-md-3">
-      <nga-search></nga-search>
-    </div>
-
-    <div class="col-md-9">
-      <router-outlet></router-outlet>
-    </div>
+    <a class="toolbar__title" routerLink="/">NgAuction</a>
 
   </div>
 
-</div>
+  <div fxFlex></div>
 
-<nga-footer></nga-footer>
+  <button mat-icon-button class="toolbar__icon-button toolbar__shopping-cart-button">
+    <mat-icon>shopping-cart</mat-icon>
+  </button>
+
+</mat-toolbar>
+
+<!--<router-outlet></router-outlet>-->

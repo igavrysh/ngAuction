@@ -1,40 +1,27 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-
+import { MatButtonModule } from '@angular/material/button';
+import { MatIconModule } from '@angular/material/icon';
+import { MatToolbarModule } from '@angular/material/toolbar';
+import { FlexLayoutModule } from '@angular/flex-layout';
+import { HttpClientModule } from '@angular/common/http';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { HomeComponent } from './home/home.component';
-import { CarouselComponent } from './carousel/carousel.component';
-import { FooterComponent } from './footer/footer.component';
-import { NavbarComponent } from './navbar/navbar.component';
-import { ProductItemComponent } from './product-item/product-item.component';
-import { ProductDetailComponent } from './product-detail/product-detail.component';
-import { SearchComponent } from './search/search.component';
-import { StarsComponent } from './stars/stars.component';
-import { ProductService } from './shared/product.service';
-import { RouterModule } from '@angular/router';
-import { AuctionMaterialModule } from "./auction-material/auction-material.module";
-import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
-    AppComponent,
-    HomeComponent,
-    CarouselComponent,
-    FooterComponent,
-    NavbarComponent,
-    ProductItemComponent,
-    ProductDetailComponent,
-    SearchComponent,
-    StarsComponent
+    AppComponent
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule,
-    AuctionMaterialModule,
-    FormsModule
+    MatButtonModule,
+    MatIconModule,
+    MatToolbarModule,
+    FlexLayoutModule,
+    HttpClientModule,
+    AppRoutingModule
   ],
-  providers: [ProductService],
+  providers: [],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
