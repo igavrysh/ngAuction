@@ -9,6 +9,7 @@
     background-color: mat-color($nga-background, card);
     position: relative;
     box-shadow: 0 1px mat-color($nga-foreground, divider);
+    width: 100%;
 }
 
 .toolbar__logo-title-group {
@@ -33,7 +34,7 @@
     color: mat-color($nga-foreground, icon);
 }
 
-.toobar__shopping-cart-button {
+
+.toolbar__shopping_cart-button {
     margin-right: 8px;
 }
-
