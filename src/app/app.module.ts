@@ -8,16 +8,20 @@ import { HttpClientModule } from '@angular/common/http';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { ProductService, Product } from './shared/services';
+import { HomeComponent } from './home/home.component';
+import { MatGridListModule } from '@angular/material';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    HomeComponent
   ],
   imports: [
     BrowserModule,
     MatButtonModule,
     MatIconModule,
     MatToolbarModule,
+    MatGridListModule,
     FlexLayoutModule,
     HttpClientModule,
     AppRoutingModule
