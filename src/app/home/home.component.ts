@@ -1,9 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Inject } from '@angular/core';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { first } from 'rxjs/operators'; 
 import { Product, ProductService } from '../shared/services';
 import { MediaObserver } from '@angular/flex-layout';
+
 
 @Component({
   selector: 'nga-home',
@@ -24,7 +25,8 @@ export class HomeComponent implements OnInit {
     ['xl', 5]
   ]);
 
-  constructor(private media: MediaObserver, 
+  constructor(
+    private media: MediaObserver, 
     private productService: ProductService) { 
     this.products$ = this.productService.getAll();
     
