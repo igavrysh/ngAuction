@@ -13,8 +13,7 @@ import { MatGridListModule } from '@angular/material';
 
 @NgModule({
   declarations: [
-    AppComponent,
-    HomeComponent
+    AppComponent
   ],
   imports: [
     BrowserModule,
