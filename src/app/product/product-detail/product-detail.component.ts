@@ -13,7 +13,7 @@ export class ProductDetailComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
-    console.log("product detail " + this.product.id);
+    console.log("product detail " + this.product.id + " product name " + this.product.title);
   }
 
 }

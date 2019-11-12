@@ -20,16 +20,13 @@ export class ProductComponent implements OnInit {
   ) { 
 
     console.log("product component");
-
-
     
     this.product$ = this.route.paramMap.pipe(
       map(params => {
-        console.log("productID " + parseInt(params.get('productId') || '', 10));
+        console.log("Getting product with id " + params.get('productId') || '');
 
-        return parseInt(params.get('productId') || '', 10)
-      }
-      ),
+        return params.get('productId') || ''
+      }),
       filter(productId => !!productId),
       switchMap(productId => this.productService.getBuyId(productId))
     );

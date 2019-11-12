@@ -4,7 +4,7 @@ import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 
 export interface Product {
-  id: number;
+  id: string;
   title: string;
   price: number;
   imageUrl: string;
@@ -22,7 +22,7 @@ export class ProductService {
     return this.http.get<Product[]>('/data/products/all.json');
   }
 
-  getBuyId(productId: number): Observable<Product> {
+  getBuyId(productId: string): Observable<Product> {
     return this.http.get<Product[]>('/data/products/all.json')
       .pipe(
         map(products => <Product>products.find(p => p.id === productId))
