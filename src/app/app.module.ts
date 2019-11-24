@@ -15,6 +15,7 @@ import { AppComponent } from './app.component';
 import { ProductService, Product } from './shared/services';
 import { HomeComponent } from './home/home.component';
 import { MatGridListModule } from '@angular/material';
+import { SearchFormModule } from './shared/components';
 
 @NgModule({
   declarations: [
@@ -28,6 +29,7 @@ import { MatGridListModule } from '@angular/material';
     MatGridListModule,
     FlexLayoutModule,
     HttpClientModule,
+    SearchFormModule,
     RouterModule.forRoot(routes)
   ],
   providers: [
