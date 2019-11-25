@@ -4,10 +4,12 @@ import { HomeComponent } from './home.component';
 import { RouterModule } from '@angular/router';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { MatGridListModule } from '@angular/material';
+import { SearchResultsComponent } from './search/search-results/search-results.component';
 
 @NgModule({
   declarations: [
-    HomeComponent
+    HomeComponent,
+    SearchResultsComponent
   ],
   imports: [
     CommonModule,
