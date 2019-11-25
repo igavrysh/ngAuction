@@ -4,6 +4,7 @@ import { NgModule } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { MatToolbarModule } from '@angular/material/toolbar';
+import { MatSidenavModule } from '@angular/material/sidenav';
 
 import { routes } from './app.routing';
 import { RouterModule } from '@angular/router';
@@ -13,7 +14,6 @@ import { HttpClientModule } from '@angular/common/http';
 
 import { AppComponent } from './app.component';
 import { ProductService, Product } from './shared/services';
-import { HomeComponent } from './home/home.component';
 import { MatGridListModule } from '@angular/material';
 import { SearchFormModule } from './shared/components';
 import { CategoriesComponent } from './home/categories/categories.component';
@@ -31,6 +31,7 @@ import { ProductGridComponent } from './home/product-grid/product-grid.component
     MatIconModule,
     MatToolbarModule,
     MatGridListModule,
+    MatSidenavModule,
     FlexLayoutModule,
     HttpClientModule,
     SearchFormModule,

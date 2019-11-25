@@ -1,4 +1,4 @@
-import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
+import { Component, ChangeDetectionStrategy } from '@angular/core';
 import { Observable } from 'rxjs';
 import { ProductService, Product } from 'src/app/shared/services';
 import { ActivatedRoute } from '@angular/router';
@@ -6,11 +6,11 @@ import { switchMap } from 'rxjs/operators';
 
 @Component({
   selector: 'nga-search',
-  templateUrl: './search-results.component.html',
-  styleUrls: ['./search-results.component.scss'],
+  templateUrl: './search.component.html',
+  styleUrls: ['./search.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class SearchResultsComponent implements OnInit {
+export class SearchComponent {
   readonly products$: Observable<Product[]>;
 
   constructor(
@@ -21,8 +21,4 @@ export class SearchResultsComponent implements OnInit {
       switchMap(queryParams => this.productService.search(queryParams))
     );
   }
-
-  ngOnInit() {
-  }
-
 }

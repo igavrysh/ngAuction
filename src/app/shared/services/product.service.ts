@@ -59,7 +59,7 @@ export class ProductService {
   }
 
   private reduceCategories(prouducts: Product[]): string[] {
-    return prouducts.reduce((all, product) => all.concat(product.categories), new Arrya<string>());
+    return prouducts.reduce((all, product) => all.concat(product.categories), new Array<string>());
   }
 
   private filterProducts(products: Product[], params: ProductSearchParams): Product[] {
