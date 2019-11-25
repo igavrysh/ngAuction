@@ -1,7 +1,7 @@
 import { Injectable, Inject } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { map } from 'rxjs/operators';
+import { map, reduce } from 'rxjs/operators';
 import { API_BASE_URL } from '../../app.tokens'
 
 export interface Product {
@@ -10,6 +10,7 @@ export interface Product {
   price: number;
   imageUrl: string;
   description: string;
+  categories: string[];
 }
 
 export interface ProductSearchParams {
@@ -40,7 +41,42 @@ export class ProductService {
       );
   }
 
+  getByCategory(category: string): Observable<Product[]> {
+    return this.http.get<Product[]>('/data/products.json').pipe(
+      map(products => products.filter(p => p.categories.includes(category)))
+    );
+  }
+
+  getAllCategories(): Observable<string[]> {
+    return this.http.get<Product[]>('/data/products.json').pipe(
+      map(this.reduceCategories),
+      map(categories => Array.from(new Set(categories)))
+    );
+  }
+
   search(params: ProductSearchParams): Observable<Product[]> {
     return this.http.get<Product[]>(`${this.baseUrl}/api/products`, {params});
+  }
+
+  private reduceCategories(prouducts: Product[]): string[] {
+    return prouducts.reduce((all, product) => all.concat(product.categories), new Arrya<string>());
+  }
+
+  private filterProducts(products: Product[], params: ProductSearchParams): Product[] {
+    return products.filter(p => {
+      if (params.titl && !p.title.toLowerCase().includes(params.title.toLowerCase())) {
+        return false;
+      }
+
+      if (params.minPrice && p.price < params.minPrice) {
+        return false;
+      }
+
+      if (params.maxPrice && p.price > params.maxPrice) {
+        return false;
+      }
+
+      return true;
+    });
   }
 }

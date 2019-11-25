@@ -16,10 +16,14 @@ import { ProductService, Product } from './shared/services';
 import { HomeComponent } from './home/home.component';
 import { MatGridListModule } from '@angular/material';
 import { SearchFormModule } from './shared/components';
+import { CategoriesComponent } from './home/categories/categories.component';
+import { ProductGridComponent } from './home/product-grid/product-grid.component';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    CategoriesComponent,
+    ProductGridComponent
   ],
   imports: [
     BrowserModule,
