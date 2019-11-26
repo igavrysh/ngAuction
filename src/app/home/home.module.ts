@@ -2,7 +2,9 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Route, RouterModule } from '@angular/router';
 import { FlexLayoutModule } from '@angular/flex-layout';
-import { MatGridListModule, MatTabsModule } from '@angular/material';
+import { MatGridListModule } from '@angular/material';
+import { MatTabsModule } from '@angular/material';
+
 import { SearchComponent } from './search/search.component';
 import { CategoriesComponent } from './categories/categories.component';
 import { ProductGridComponent } from './product-grid/product-grid.component';
