@@ -1,44 +1,47 @@
-import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import { HttpClientModule } from '@angular/common/http';
+import { BrowserModule } from '@angular/platform-browser';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { RouterModule } from '@angular/router';
+import { FlexLayoutModule } from '@angular/flex-layout';
 
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatSidenavModule } from '@angular/material/sidenav';
+import { MatTabsModule } from '@angular/material/tabs';
 
 import { routes } from './app.routing';
-import { RouterModule } from '@angular/router';
 
-import { FlexLayoutModule } from '@angular/flex-layout';
-import { HttpClientModule } from '@angular/common/http';
-
+import { environment } from '../environments/environment'
 import { AppComponent } from './app.component';
-import { ProductService, Product } from './shared/services';
-import { MatGridListModule } from '@angular/material';
 import { SearchFormModule } from './shared/components';
-import { CategoriesComponent } from './home/categories/categories.component';
-import { ProductGridComponent } from './home/product-grid/product-grid.component';
+import { ProductService, Product } from './shared/services';
+import { API_BASE_URL, WS_URL } from './app.tokens';
 
 @NgModule({
   declarations: [
-    AppComponent,
-    CategoriesComponent,
-    ProductGridComponent
+    AppComponent
   ],
   imports: [
     BrowserModule,
+    BrowserAnimationsModule,
+    HttpClientModule,
+
     MatButtonModule,
     MatIconModule,
     MatToolbarModule,
-    MatGridListModule,
     MatSidenavModule,
+    MatTabsModule,
     FlexLayoutModule,
-    HttpClientModule,
-    SearchFormModule,
-    RouterModule.forRoot(routes)
+    RouterModule.forRoot(routes),
+
+    SearchFormModule
   ],
   providers: [
-    ProductService
+    ProductService,
+    { provide: API_BASE_URL, useValue: environment.apiBaseUrl },
+    { provide: WS_URL, useValue: environment.wsUrl }
   ],
   bootstrap: [
     AppComponent

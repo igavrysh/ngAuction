@@ -1,11 +1,9 @@
 <nav class="tabs" mat-tab-nav-bar>
     <a mat-tab-link
         *ngFor="let c of categoriesNames$ | async"
-        routerLinkActive #rla="routerLinkActive" 
-        [routerLink]="['/categories', c]"
+        #rla="routerLinkActive" routerLinkActive
         [active]="rla.isActive"
-        
-        >
+        [routerLink]="['/categories', c]">
         {{ c | uppercase }}
     </a>
 </nav>

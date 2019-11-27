@@ -1,8 +1,9 @@
 import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
 import { Observable } from 'rxjs';
-import { Product, ProductService } from '../../shared/services'
 import { ActivatedRoute } from '@angular/router';
 import { map, switchMap } from 'rxjs/operators';
+
+import { Product, ProductService } from '../../shared/services'
 
 @Component({
   selector: 'nga-categories',
