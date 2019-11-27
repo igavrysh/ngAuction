@@ -29,8 +29,8 @@ export class SearchFormComponent {
   constructor(fb: FormBuilder, private router: Router) {
     this.searchForm = fb.group(
       {
-        title: [Validators.minLength(2)],
-        minPrice: [Validators.min(0)],
+        title: [,Validators.minLength(2)],
+        minPrice: [,Validators.min(0)],
         maxPrice: [Validators.min(0), Validators.max(10000)]
       },
       {
