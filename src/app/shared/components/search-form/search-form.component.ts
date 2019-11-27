@@ -1,20 +1,19 @@
 import { 
   Component, 
-  OnInit, 
   ChangeDetectionStrategy, 
   Output,
   EventEmitter
 } from '@angular/core';
+import { ErrorStateMatcher } from '@angular/material';
+import { Router } from '@angular/router';
 import { 
-  FormGroup, 
-  FormControl, 
-  FormGroupDirective, 
   FormBuilder, 
+  FormControl,
+  FormGroup, 
+  FormGroupDirective, 
   Validators, 
   ValidationErrors
 } from '@angular/forms';
-import { ErrorStateMatcher } from '@angular/material';
-import { Router } from '@angular/router';
 
 @Component({
   selector: 'nga-search-form',
@@ -22,7 +21,7 @@ import { Router } from '@angular/router';
   styleUrls: ['./search-form.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class SearchFormComponent implements OnInit {
+export class SearchFormComponent {
   @Output() search = new EventEmitter();
   readonly matcher = new ShowOnFormInvalidStateMatcher();
   readonly searchForm: FormGroup;
@@ -45,16 +44,10 @@ export class SearchFormComponent implements OnInit {
   onSearch(): void {
     if (this.searchForm.valid) {
       this.search.emit();
-      this.router.navigate(
-        ['/search-results'], 
-        {
-          queryParams: withoutEmptyValues(this.searchForm.value)
-        }
-      );
+      this.router.navigate(['/search'], {
+        queryParams: withoutEmptyValues(this.searchForm.value)
+      });
     }
-  }
-
-  ngOnInit() {
   }
 }
 
