@@ -25,7 +25,7 @@ export class ProductComponent {
       map(params => {
         console.log("Getting product with id " + params.get('productId') || '');
 
-        return params.get('productId') || ''
+        return parseInt(params.get('productId') || '', 10);
       }),
       filter(productId => !!productId),
       switchMap(productId => this.productService.getBuyId(productId))

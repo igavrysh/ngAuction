@@ -11,7 +11,9 @@ export class ProductDetailComponent implements OnInit {
 
   @Input() product: Product = <Product>{};
 
-  constructor() { }
+  constructor() {
+    console.log("constructor");
+  }
 
   ngOnInit() {
     console.log("product detail " + this.product.id + " product name " + this.product.title);

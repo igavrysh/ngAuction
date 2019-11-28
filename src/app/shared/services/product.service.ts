@@ -5,7 +5,7 @@ import { map, reduce } from 'rxjs/operators';
 import { API_BASE_URL } from '../../app.tokens'
 
 export interface Product {
-  id: string;
+  id: number;
   title: string;
   price: number;
   imageUrl: string;
@@ -31,31 +31,31 @@ export class ProductService {
   ) { }
 
   getAll(): Observable<Product[]> {
-    return this.http.get<Product[]>('/data/products/all.json');
+    return this.http.get<Product[]>('/data/all.json');
   }
 
-  getBuyId(productId: string): Observable<Product> {
-    return this.http.get<Product[]>('/data/products/all.json')
+  getBuyId(productId: number): Observable<Product> {
+    return this.http.get<Product[]>('/data/all.json')
       .pipe(
         map(products => <Product>products.find(p => p.id === productId))
       );
   }
 
   getByCategory(category: string): Observable<Product[]> {
-    return this.http.get<Product[]>('/data/products.json').pipe(
+    return this.http.get<Product[]>('/data/all.json').pipe(
       map(products => products.filter(p => p.categories.includes(category)))
     );
   }
 
   getAllCategories(): Observable<string[]> {
-    return this.http.get<Product[]>('/data/products.json').pipe(
+    return this.http.get<Product[]>('/data/all.json').pipe(
       map(this.reduceCategories),
       map(categories => Array.from(new Set(categories)))
     );
   }
 
   search(params: ProductSearchParams): Observable<Product[]> {
-    return this.http.get<Product[]>('/data/products.json').pipe(
+    return this.http.get<Product[]>('/data/all.json').pipe(
       map(products => this.filterProducts(products, params))
     );
   }
