@@ -9,7 +9,7 @@ import { ActivatedRoute } from '@angular/router';
   templateUrl: './product.component.html',
   styleUrls: ['./product.component.scss']
 })
-export class ProductComponent implements OnInit {
+export class ProductComponent {
 
   product$: Observable<Product>;
   suggestedProducts$: Observable<Product[]>;
@@ -33,8 +33,4 @@ export class ProductComponent implements OnInit {
 
     this.suggestedProducts$ = this.productService.getAll();
   }
-
-  ngOnInit() {
-  }
-
 }

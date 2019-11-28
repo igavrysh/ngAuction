@@ -55,7 +55,9 @@ export class ProductService {
   }
 
   search(params: ProductSearchParams): Observable<Product[]> {
-    return this.http.get<Product[]>(`${this.baseUrl}/api/products`, {params});
+    return this.http.get<Product[]>('/data/products.json').pipe(
+      map(products => this.filterProducts(products, params))
+    );
   }
 
   private reduceCategories(prouducts: Product[]): string[] {
@@ -64,7 +66,7 @@ export class ProductService {
 
   private filterProducts(products: Product[], params: ProductSearchParams): Product[] {
     return products.filter(p => {
-      if (params.titl && !p.title.toLowerCase().includes(params.title.toLowerCase())) {
+      if (params.title && !p.title.toLowerCase().includes(params.title.toLowerCase())) {
         return false;
       }
 
