@@ -20,21 +20,53 @@ export interface ProductSearchParams {
   maxPrice?: number;
 }
 
-@Injectable({
-  providedIn: 'root'
-})
-export class ProductService {
+export abstract class ProductService {
+  abstract getAll(): Observable<Product[]>;
+  abstract getById(productId: number): Observable<Product>;
+  abstract getByCategory(category: string): Observable<Product[]>;
+  abstract getAllCategories(): Observable<string[]>;
+  abstract search(params: ProductSearchParams): Observable<Product[]>;
+}
 
+@Injectable()
+export class HttpProductService implements ProductService {
+  
   constructor(
     @Inject(API_BASE_URL) private baseUrl: string,
     private http: HttpClient
-  ) { }
+  ) {}
+
+  getAll(): Observable<Product[]> {
+    return this.http.get<Product[]>(`${this.baseUrl}/api/products`);
+  }
+
+  getById(productId: number): Observable<Product> {
+    return this.http.get<Product>(`${this.baseUrl}/api/products/${productId}`);
+  }
+
+  getByCategory(category: string): Observable<Product[]> {
+    return this.http.get<Product[]>(`${this.baseUrl}/api/categories/${category}`);
+  }
+
+  getAllCategories(): Observable<string[]> {
+    return this.http.get<string[]>(`${this.baseUrl}/api/categories`);
+  }
+
+  search(params: ProductSearchParams): Observable<Product[]> {
+    return this.http.get<Product[]>(`${this.baseUrl}/api/products`, {params});
+  }
+}
+
+@Injectable()
+export class _StaticProductService implements ProductService {
+
+  constructor(private http: HttpClient) {}
 
   getAll(): Observable<Product[]> {
     return this.http.get<Product[]>('/data/all.json');
   }
 
-  getBuyId(productId: number): Observable<Product> {
+  getById(productId: number): Observable<Product> {
     return this.http.get<Product[]>('/data/all.json')
       .pipe(
         map(products => <Product>products.find(p => p.id === productId))

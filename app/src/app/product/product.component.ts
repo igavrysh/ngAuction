@@ -28,7 +28,7 @@ export class ProductComponent {
         return parseInt(params.get('productId') || '', 10);
       }),
       filter(productId => !!productId),
-      switchMap(productId => this.productService.getBuyId(productId))
+      switchMap(productId => this.productService.getById(productId))
     );
 
     this.suggestedProducts$ = this.productService.getAll();
