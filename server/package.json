@@ -3,6 +3,7 @@
     "version": "1.0.0",
     "license": "MIT",
     "scripts": {
+        "tsc": "tsc",
         "build": "tsc",
         "start": "nodemon --watch 'src/**/*.ts' --exec 'ts-node' src/index.ts",
         "now-start": "node src/index.js"
