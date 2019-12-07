@@ -4,8 +4,8 @@
 
 export const environment = {
   production: false,
-  apiBaseUrl: '',
-  wsUrl: ''
+  apiBaseUrl: 'http://localhost:9090/api',
+  wsUrl: 'ws://localhost:9090'
 };
 
 /*

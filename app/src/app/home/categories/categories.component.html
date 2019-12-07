@@ -1,6 +1,6 @@
 <nav class="tabs" mat-tab-nav-bar>
     <a mat-tab-link
-        *ngFor="let c of categoriesNames$ | async"
+        *ngFor="let c of categories$ | async"
         #rla="routerLinkActive" routerLinkActive
         [active]="rla.isActive"
         [routerLink]="['/categories', c]">
