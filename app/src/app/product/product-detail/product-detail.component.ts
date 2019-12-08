@@ -1,22 +1,56 @@
-import { Component, OnInit, Input, ChangeDetectionStrategy } from '@angular/core';
-import { Product } from 'src/app/shared/services';
+import { 
+  ChangeDetectionStrategy,
+  Component,
+  OnInit,
+  Input,
+  Inject,
+  OnChanges,
+  SimpleChange
+} from '@angular/core';
+import {
+  Product,
+  BidMessage,
+  BidService 
+} from '../../shared/services';
+import { Subject, Observable, combineLatest } from 'rxjs';
+import { API_BASE_URL } from '../../app.tokens';
+import { startWith } from 'rxjs/operators';
 
 @Component({
   selector: 'nga-product-detail',
-  templateUrl: './product-detail.component.html',
   styleUrls: ['./product-detail.component.scss'],
+  templateUrl: './product-detail.component.html',
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class ProductDetailComponent implements OnInit {
-
+export class ProductDetailComponent implements OnInit, OnChanges {
+  private readonly productChange$ = new Subject<Product>();
+  price$: Observable<number>;
   @Input() product: Product = <Product>{};
 
-  constructor() {
+  constructor(
+    @Inject(API_BASE_URL) private readonly baseUrl: string,
+    private readonly bidService: BidService
+  ) {
     console.log("constructor");
   }
 
   ngOnInit() {
-    console.log("product detail " + this.product.id + " product name " + this.product.title);
+    this.price$ = combineLatest(
+      this.productChange$.pipe(startWith(this.product)),
+      this.bidService.priceUpdates.pipe(startWith<BidMessage | null>(null)),
+      (product, bid) => bid && bid.productId === product.id ? bid.price : product.price
+    );
   }
 
+  ngOnChanges({ product } : { product: SimpleChange }) {
+    this.productChange$.next(product.currentValue);
+  }
+
+  placeBid(price: number) {
+    this.bidService.placeBid(this.product.id, price);
+  }
+
+  urlFor(product: Product): string {
+    return `${this.baseUrl}/${product.imageUrl}`;
+  }
 }
