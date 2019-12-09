@@ -15,11 +15,14 @@ export class BidServer {
   private readonly wsServer: ws.Server;
 
   constructor(server: http.Server) {
-    this.wsServer = new ws.Server({ server });
+    this.wsServer = new ws.Server({ server: server });
     this.wsServer.on('connection', ws => this.onConnection(ws));
+    console.log('BidServer started');
+    console.log('wsServer: ' + this.wsServer);
   }
 
   private onConnection(ws: ws): void {
+
     // Subscribe to WebSocket events.
     ws.on('message', message => this.onMessage(<string>message));
     ws.on('error', error => this.onError(error));
@@ -31,6 +34,8 @@ export class BidServer {
   private onMessage(message: string): void {
     const bid: BidMessage = JSON.parse(message);
     updateProductPrice(bid.productId, bid.amount);
+
+    console.log("Recieved bid: " + bid);
 
     // Broadcast new price.
     this.wsServer.clients.forEach(ws => ws.send(JSON.stringify(bid)));

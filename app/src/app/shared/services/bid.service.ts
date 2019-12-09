@@ -10,11 +10,13 @@ export interface BidMessage {
 
 @Injectable()
 export class BidService {
-
   private _subject: WebSocketSubject<any>;
-  
   private get subject(): WebSocketSubject<any> {
     const open = this._subject && !this._subject.closed;
+
+    console.log('subject is open: ' + open);
+    console.log('this wsUrl: ' + this.wsUrl);
+
     return open 
       ? this._subject 
       : this._subject = WebSocketSubject.create(this.wsUrl);
@@ -24,9 +26,13 @@ export class BidService {
     return this.subject.asObservable();
   }
 
-  constructor(@Inject(WS_URL) private readonly wsUrl: string) {}
+  constructor(@Inject(WS_URL) private readonly wsUrl: string) {
+    console.log('BidService started');
+  }
 
   placeBid(productId: number, price: number): void {
+    console.log('placeBid for productId: ' + productId + ' price: ' + price);
+    console.log('this.subject: ' + this.subject); 
     this.subject.next(JSON.stringify({ productId, price }));
   }
 }

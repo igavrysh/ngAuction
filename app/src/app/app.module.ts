@@ -11,13 +11,11 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatTabsModule } from '@angular/material/tabs';
 
-import { routes } from './app.routing';
-
-import { environment } from '../environments/environment'
-import { AppComponent } from './app.component';
-import { SearchFormModule } from './shared/components';
-import { ProductService, Product } from './shared/services';
+import { environment } from '../environments/environment';
 import { SHARED_SERVICES } from './shared/services';
+import { SearchFormModule } from './shared/components';
+import { AppComponent } from './app.component';
+import { routes } from './app.routing';
 import { API_BASE_URL, WS_URL } from './app.tokens';
 
 @NgModule({
@@ -28,14 +26,14 @@ import { API_BASE_URL, WS_URL } from './app.tokens';
     BrowserModule,
     BrowserAnimationsModule,
     HttpClientModule,
+    FlexLayoutModule,
+    RouterModule.forRoot(routes),
 
     MatButtonModule,
     MatIconModule,
     MatToolbarModule,
     MatSidenavModule,
     MatTabsModule,
-    FlexLayoutModule,
-    RouterModule.forRoot(routes),
 
     SearchFormModule
   ],

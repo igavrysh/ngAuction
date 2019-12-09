@@ -1,5 +1,5 @@
 import * as express from 'express';
-import * as path from "path";
+import * as path from 'path';
 import { createServer } from 'http';
 import { createBidServer } from './ws';
 import { api } from './rest';

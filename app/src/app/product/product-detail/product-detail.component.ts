@@ -31,7 +31,7 @@ export class ProductDetailComponent implements OnInit, OnChanges {
     @Inject(API_BASE_URL) private readonly baseUrl: string,
     private readonly bidService: BidService
   ) {
-    console.log("constructor");
+    console.log("ProductDetail constructor");
   }
 
   ngOnInit() {
@@ -48,6 +48,12 @@ export class ProductDetailComponent implements OnInit, OnChanges {
 
   placeBid(price: number) {
     this.bidService.placeBid(this.product.id, price);
+    console.log(
+      'Placing bid: '
+      + this.product.id
+      + ', price: ' 
+      + price
+    );
   }
 
   urlFor(product: Product): string {

@@ -1,5 +1,5 @@
 import { Provider } from '@angular/core';
-import { BidService, BidMessage } from './bid.service';
+import { BidService } from './bid.service';
 import { ProductService, HttpProductService } from './product.service';
 
 export { BidMessage, BidService } from './bid.service';
