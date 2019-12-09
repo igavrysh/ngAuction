@@ -2,10 +2,12 @@ import * as http from 'http';
 import * as ws from 'ws';
 import { updateProductPrice } from './db';
 
+/*
 interface BidMessage {
-  productId: number;
-  amount: number;
-}
+  productId: string;
+  amount: string;
+} 
+*/
 
 export function createBidServer(httpServer: http.Server): BidServer {
   return new BidServer(httpServer);
@@ -32,14 +34,18 @@ export class BidServer {
   }
 
   private onMessage(message: string): void {
-    const bid: BidMessage = JSON.parse(message);
-    updateProductPrice(bid.productId, bid.amount);
+    console.log("message: " + message);
+    let bid = JSON.parse(message);
+    console.log("console.log(bid) = ");
+    console.log(bid);
+    //console.log("Recieved bid +++: " + bid);
+    console.log("Recievd bid for productId: " + bid["productId"] + ", amount: " + bid.amount);
 
-    console.log("Recieved bid: " + bid);
-
+    //updateProductPrice(bid.productId, bid.amount);
+    updateProductPrice(1, 1);
     // Broadcast new price.
-    this.wsServer.clients.forEach(ws => ws.send(JSON.stringify(bid)));
-    console.log(`Bid ${bid.amount} is placed on product ${bid.productId}`);
+    //this.wsServer.clients.forEach(ws => ws.send(JSON.stringify(bid)));
+    //console.log(`Bid ${bid.amount} is placed on product ${bid.productId}`);
   }
 
   private onClose(): void {
