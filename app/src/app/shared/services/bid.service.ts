@@ -1,6 +1,6 @@
 import { Inject, Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { WebSocketSubject } from 'rxjs/webSocket';
+import { WebSocketSubject, webSocket } from 'rxjs/webSocket';
 import { WS_URL } from '../../app.tokens';
 
 export interface BidMessage {
@@ -19,7 +19,7 @@ export class BidService {
 
     return open 
       ? this._subject 
-      : this._subject = WebSocketSubject.create(this.wsUrl);
+      : this._subject = webSocket(this.wsUrl);
   }
 
   get priceUpdates(): Observable<BidMessage> {
@@ -31,8 +31,32 @@ export class BidService {
   }
 
   placeBid(productId: number, price: number): void {
+    interface MyObj {
+      name: string;
+      age: number;
+      favoriteFood: string;
+    }
+
+    const myObj = {
+      name: 'Skip',
+      age: 2,
+      favoriteFood: 'Steak'
+    };
+    const myObjStr = JSON.stringify(myObj) ;
+    console.log('myObjStr:' + myObjStr);
+    let s: MyObj = JSON.parse(myObjStr);
+    console.log('myObjStr: ' + s.name);
+
+
     console.log('placeBid for productId: ' + productId + ' price: ' + price);
     console.log('this.subject: ' + this.subject); 
-    this.subject.next(JSON.stringify({ productId, price }));
+
+    const bid = { 
+      productId: productId, 
+      price: price 
+    };
+
+    this.subject.next(JSON.stringify(bid));
+
   }
 }

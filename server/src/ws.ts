@@ -2,12 +2,10 @@ import * as http from 'http';
 import * as ws from 'ws';
 import { updateProductPrice } from './db';
 
-/*
 interface BidMessage {
-  productId: string;
-  amount: string;
+  productId: number;
+  price: number;
 } 
-*/
 
 export function createBidServer(httpServer: http.Server): BidServer {
   return new BidServer(httpServer);
@@ -18,6 +16,7 @@ export class BidServer {
 
   constructor(server: http.Server) {
     this.wsServer = new ws.Server({ server: server });
+    this.wsServer.on('error', error => this.onError(error));
     this.wsServer.on('connection', ws => this.onConnection(ws));
     console.log('BidServer started');
     console.log('wsServer: ' + this.wsServer);
@@ -35,11 +34,12 @@ export class BidServer {
 
   private onMessage(message: string): void {
     console.log("message: " + message);
-    let bid = JSON.parse(message);
+    const bid: BidMessage = JSON.parse(message);
     console.log("console.log(bid) = ");
     console.log(bid);
     //console.log("Recieved bid +++: " + bid);
-    console.log("Recievd bid for productId: " + bid["productId"] + ", amount: " + bid.amount);
+    console.log("Recievd bid for productId: " + bid.productId + ", price: " + bid.price);
+    console.log(bid.price);
 
     //updateProductPrice(bid.productId, bid.amount);
     updateProductPrice(1, 1);
